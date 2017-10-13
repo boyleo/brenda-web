@@ -139,6 +139,9 @@ angular.module('awsSetup')
 				'fi\n' +
 				'sudo service nginx restart\n' +
 				'export BRENDA_WORK_DIR="."\n' +
+				'export BLENDER_USER_CONFIG=/CustomSoftware/BlenderPrefs/UserConfigs/Rainer/\n' +
+				'export BLENDER_USER_SCRIPTS=/CustomSoftware/BlenderPrefs/scripts/\n' +
+				'export OCIO=/CustomSoftware/filmic-blender/config.ocio\n' +
 				'mkdir -p "$B"\n' +
 				'cd "$B"\n' +
 				'/usr/local/bin/brenda-node --daemon <<EOF\n' +
