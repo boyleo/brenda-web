@@ -133,7 +133,7 @@ angular.module('awsSetup')
 				'sudo echo "* * * * * root cat /proc/uptime /proc/loadavg $B/task_count > ' + $scope.amiNginxPath + 'uptime.txt" >> /etc/crontab\n' +
 				'if ! [ -d "$B" ]; then\n' +
 				'  for f in brenda.pid log task_count task_last DONE ; do\n' +
-				'    ln -s "$B/$f" "/root/$f"\n' +
+				'    ln -s "$B/$f" "/home/ubuntu/$f"\n' +
 				'    sudo ln -s "$B/$f" "' + $scope.amiNginxPath + '$f"\n' +
 				'  done\n' +
 				'fi\n' +
