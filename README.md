@@ -18,8 +18,11 @@ its package manager (npm) installed.  You can get them from [http://nodejs.org/]
 
 #### installing npm
 On Linux, get the current version of npm via:
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-    sudo apt-get install -y nodejs 
+
+```
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs 
+```
 
 On Windows, grab the 8.x version installer from the NodeJs website and install it
 
