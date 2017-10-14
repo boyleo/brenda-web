@@ -25,7 +25,7 @@ On Windows, grab the 8.x version installer from the NodeJs website and install i
 
 ### Clone the project
 
-Clone the brenda-web repository using [http://git-scm.com/][git]:
+Clone the brenda-web repository using [git](http://git-scm.com/):
 
 ```
 git clone https://github.com/njeirath/brenda-web.git
