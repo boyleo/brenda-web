@@ -16,9 +16,16 @@ You need git to clone the angular-seed repository. You can get git from
 We also use a number of node.js tools to initialize and test angular-seed. You must have node.js and
 its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
 
+#### installing npm
+On Linux, get the current version of npm via:
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    sudo apt-get install -y nodejs 
+
+On Windows, grab the 8.x version installer from the NodeJs website and install it
+
 ### Clone the project
 
-Clone the brenda-web repository using [git][git]:
+Clone the brenda-web repository using [http://git-scm.com/][git]:
 
 ```
 git clone https://github.com/njeirath/brenda-web.git
