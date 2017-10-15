@@ -8,6 +8,10 @@
 			"ami": "ami-a7d416dd",
 			"blenderVersion": "2.79 currentStable currentDev",
 			"nginxPath": "/usr/share/nginx/html/"
+		},{
+			"ami": "ami-a030e5da",
+			"blenderVersion": "2.79 currentStable currentDev G3 GPU rendering enabled",
+			"nginxPath": "/usr/share/nginx/html/"
 		}
 	],
 	"defaultNginxPath": "/usr/share/nginx/html/" 
