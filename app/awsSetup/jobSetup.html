@@ -49,9 +49,12 @@
 				</span>
 				<input type="text" class="form-control" id="workTemplate" ng-model="workTemplate" />
 			</div>
-			<label for="sceneToRender">scene to render</label>
-			<div class="input-group" width="600px">
-				<input type="text" class="form-control" id="sceneToRender" ng-model="scene"/>
+			<label for="inlineScript">Python Script to execute for each frame</label>
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" brenda-help="awsSetup/help/jobHelp.html"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button>
+				</span>
+				<input type="text" class="form-control" id="inlineScript" ng-model="inlineScript" />
 			</div>
 		</div>
 		
@@ -64,6 +67,10 @@
 			<div class="form-group">
 				<label for="endFrame">End Frame</label>
 				<input type="number" name="endFrame" class="form-control" id="endFrame" ng-model="endFrame" required min="{{startFrame}}"/>
+			</div>
+			<div class="form-group">
+				<label for="sceneToRender">scene to render</label>
+				<input type="text" class="form-control" id="sceneToRender" ng-model="scene" />
 			</div>
 		</div>
 
