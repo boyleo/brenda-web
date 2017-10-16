@@ -15,6 +15,11 @@
 			"blenderVersion": "2.78",
 			"nginxPath": "/usr/share/nginx/html/",
 			"region": "us-west-2"
+		},{
+			"ami": "ami-23805659",
+			"blenderVersion": "2.79 Kiska",
+			"nginxPath": "/usr/share/nginx/html/",
+			"region": "us-east-1"
 		}
 	],
 	"defaultNginxPath": "/usr/share/nginx/html/" 
