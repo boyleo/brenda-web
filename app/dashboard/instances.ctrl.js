@@ -48,6 +48,7 @@ angular.module('dashboard')
 			instanceIp: '-',
 			uptime: '-',
 			tasksCompleted: '-',
+			//message: '-',
 			cpuLoad: '-',
 			queueUrl: '',
 			destinationBucket: ''
@@ -179,6 +180,7 @@ angular.module('dashboard')
 							var match = line.match(/Path Tracing Tile (\d+)\/(\d+)/);
 							if (match) {
 								partial = match[1] / match[2];
+								//partial = line;
 							}
 						});
 						
