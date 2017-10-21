@@ -44,12 +44,12 @@ angular.module('awsSetup')
             'EOF\n'
         ].join('');
 
-        $scope.workTemplateFullframe = 'blender -b *.blend -F MULTILAYER -y ' + 
-        	'--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -o $OUTDIR/$SCENE_### -s $START -e $END -j $STEP -t 0 -a';
+        $scope.workTemplateFullframe = 'blender -b *.blend -y ' + 
+        	'--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F MULTILAYER -o $OUTDIR/$SCENE_### -s $START -e $END -j $STEP -t 0 -a';
         
         //$scope.workTemplateFullframe = 'blender -b *.blend -F MULTILAYER -y -S YOURSCENEHERE -o $OUTDIR/render_### -s $START -e $END -j $STEP -t 0 -a';
-        $scope.workTemplateSubframe = 'blender -b *.blend -F MULTILAYER -y ' + 
-        '--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE ' +
+        $scope.workTemplateSubframe = 'blender -b *.blend -F -y ' + 
+        '--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F MULTILAYER ' +
     	'-o $OUTDIR/$SCENE_###_x$SF_MIN_Xto$SF_MAX_Xy$SF_MIN_Yto$SF_MAX_Y -s $START -e $END -j $STEP -t 0 -a';
         $scope.workTemplate = $scope.workTemplateFullframe;
         $scope.startFrame = 1;
