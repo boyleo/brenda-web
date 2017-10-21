@@ -16,7 +16,7 @@
 			"nginxPath": "/usr/share/nginx/html/",
 			"region": "us-west-2"
 		},{
-			"ami": "ami-23805659",
+			"ami": "ami-c18659bb",
 			"blenderVersion": "2.79 Kiska",
 			"nginxPath": "/usr/share/nginx/html/",
 			"region": "us-east-1"
