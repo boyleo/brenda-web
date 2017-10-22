@@ -48,7 +48,7 @@ angular.module('dashboard')
 			instanceIp: '-',
 			uptime: '-',
 			tasksCompleted: '-',
-			//message: '-',
+			message: 'no logs received',
 			cpuLoad: '-',
 			queueUrl: '',
 			destinationBucket: ''
@@ -178,9 +178,15 @@ angular.module('dashboard')
 						
 						lines.forEach(function(line) {
 							var match = line.match(/Path Tracing Tile (\d+)\/(\d+)/);
+							
+							// Brecht changed the output format of the message recently
+							// so run an additional check for that one now
+							if (!match) {
+								var match = line.match(/Rendered (\d+)\/(\d+)/);
+							}
 							if (match) {
 								partial = match[1] / match[2];
-								//partial = line;
+								row.message=line;
 							}
 						});
 						
