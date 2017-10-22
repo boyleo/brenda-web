@@ -48,7 +48,7 @@ angular.module('dashboard')
 			instanceIp: '-',
 			uptime: '-',
 			tasksCompleted: '-',
-			message: 'no logs received',
+			message: 'waiting for log',
 			cpuLoad: '-',
 			queueUrl: '',
 			destinationBucket: ''
@@ -186,6 +186,8 @@ angular.module('dashboard')
 							}
 							if (match) {
 								partial = match[1] / match[2];
+							}
+							if (line) {
 								row.message=line;
 							}
 						});
