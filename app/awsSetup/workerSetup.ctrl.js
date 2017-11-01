@@ -154,6 +154,18 @@ angular.module('awsSetup')
 				'fi\n' +
 				'sudo service nginx restart\n' +
 				'export BRENDA_WORK_DIR="."\n' +
+				
+				// also add the environment variables defined in /etc/environment on the server
+				// those are not seen by the AWS instance by default for some reason
+				'for x in $(tail -n 50 /etc/environment)\n' +
+				'do\n' +
+				'    echo brenda-web is adding variable $x\n' +
+				'    export $x\n' +
+				'done\n' +
+				
+				// give the user feedback on the vars
+				'printenv\n' +
+				
 				'mkdir -p "$B"\n' +
 				'cd "$B"\n' +
 				'/usr/local/bin/brenda-node --daemon <<EOF\n' +
