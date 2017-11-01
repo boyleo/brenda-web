@@ -3,17 +3,14 @@
 		{
 			"ami": "ami-380bd82e",
 			"blenderVersion": "2.78",
-			"nginxPath": "/usr/share/nginx/html/",
 			"region": "us-east-1"
 		},{
 			"ami": "ami-5c41a726",
 			"blenderVersion": "2.79",
-			"nginxPath": "/usr/share/nginx/html/",
 			"region": "us-east-1"
 		},{
 			"ami": "ami-f68d4d8e",
 			"blenderVersion": "2.78",
-			"nginxPath": "/usr/share/nginx/html/",
 			"region": "us-west-2"
 		},{
 			"ami": "ami-c18659bb",
@@ -21,6 +18,5 @@
 			"nginxPath": "/usr/share/nginx/html/",
 			"region": "us-east-1"
 		}
-	],
-	"defaultNginxPath": "/usr/share/nginx/html/" 
+	]
 }
