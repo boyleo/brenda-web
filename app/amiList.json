@@ -13,8 +13,8 @@
 			"blenderVersion": "2.78",
 			"region": "us-west-2"
 		},{
-			"ami": "ami-c18659bb",
-			"blenderVersion": "2.79 Kiska",
+			"ami": "ami-b512a6cf",
+			"blenderVersion": "2.79 Kiska FO Test",
 			"region": "us-east-1"
 		},{
 			"ami": "ami-0c2e8776",
