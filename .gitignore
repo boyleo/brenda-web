@@ -8,3 +8,6 @@ tmp
 .tern-project
 /npm-debug.log
 /package-lock.json
+
+# ignore folders
+**/.settings/
