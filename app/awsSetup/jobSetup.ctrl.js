@@ -44,20 +44,20 @@ angular.module('awsSetup')
             'EOF\n'
         ].join('');
 
-        $scope.workTemplateFullframe = 'blender -b *.blend -y ' + 
-        	'--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F MULTILAYER -o $OUTDIR/$SCENE_### -s $START -e $END -j $STEP -t 0 -a';
+        $scope.workTemplateFullframe = 'currentDev -b *.blend -y ' + 
+        	'--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F MULTILAYER -o $OUTDIR/$SCENE_#### -s $START -e $END -j $STEP -t 0 -a';
         
         //$scope.workTemplateFullframe = 'blender -b *.blend -F MULTILAYER -y -S YOURSCENEHERE -o $OUTDIR/render_### -s $START -e $END -j $STEP -t 0 -a';
-        $scope.workTemplateSubframe = 'blender -b *.blend -F -y ' + 
+        $scope.workTemplateSubframe = 'currentDev -b *.blend -y ' + 
         '--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F MULTILAYER ' +
-    	'-o $OUTDIR/$SCENE_###_x$SF_MIN_Xto$SF_MAX_Xy$SF_MIN_Yto$SF_MAX_Y -s $START -e $END -j $STEP -t 0 -a';
+    	'-o $OUTDIR/$SCENE_####_x$SF_MIN_Xto$SF_MAX_Xy$SF_MIN_Yto$SF_MAX_Y -s $START -e $END -j $STEP -t 0 -a';
         $scope.workTemplate = $scope.workTemplateFullframe;
         $scope.startFrame = 1;
         $scope.endFrame = 9;
         $scope.scene = 'Scene';
         $scope.inlineScript = 'bpy.ops.configurator.set_sampling(scene=\'ALL\', device=\'GPU\', samples=25, ' + 
-    	'percentage=100, branched=False, clamping=True, max_bounces=20, min_bounces=10,transparent_max_bounces=15,' + 
-    	'transparent_min_bounces=15)';
+    	'percentage=100, branched=False, clamping=True, max_bounces=8, min_bounces=2,transparent_max_bounces=6,' + 
+    	'transparent_min_bounces=2, use_all_resources=False, cpu_tile_size=32)';
         	
         $scope.shuffle = Boolean(localStorageService.get('shuffleQ'));
     };
