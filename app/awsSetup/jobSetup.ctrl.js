@@ -55,9 +55,9 @@ angular.module('awsSetup')
         $scope.startFrame = 1;
         $scope.endFrame = 9;
         $scope.scene = 'Scene';
-        $scope.inlineScript = 'bpy.ops.configurator.set_sampling(scene=\'ALL\', device=\'GPU\', samples=25, ' + 
-    	'percentage=100, branched=False, clamping=True, max_bounces=8, min_bounces=2,transparent_max_bounces=6,' + 
-    	'transparent_min_bounces=2, use_all_resources=False, cpu_tile_size=32)';
+        $scope.inlineScript = 'bpy.ops.render.set_sampling(scene=\'ALL\', device=\'GPU\', samples=25, ' + 
+    	'percentage=100, branched=False, clamping=True, max_bounces=8, transparent_max_bounces=6,' + 
+    	'use_all_resources=False, cpu_tile_size=32)';
         	
         $scope.shuffle = Boolean(localStorageService.get('shuffleQ'));
     };
