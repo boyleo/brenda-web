@@ -44,11 +44,11 @@ angular.module('awsSetup')
             'EOF\n'
         ].join('');
 
-        $scope.workTemplateFullframe = 'currentDev -b *.blend -y ' + 
+        $scope.workTemplateFullframe = '$BLENDERVERSION -b *.blend -y ' + 
         	'--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F MULTILAYER -o $OUTDIR/$SCENE_#### -s $START -e $END -j $STEP -t 0 -a';
         
         //$scope.workTemplateFullframe = 'blender -b *.blend -F MULTILAYER -y -S YOURSCENEHERE -o $OUTDIR/render_### -s $START -e $END -j $STEP -t 0 -a';
-        $scope.workTemplateSubframe = 'currentDev -b *.blend -y ' + 
+        $scope.workTemplateSubframe = '$BLENDERVERSION -b *.blend -y ' + 
         '--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F MULTILAYER ' +
     	'-o $OUTDIR/$SCENE_####_x$SF_MIN_Xto$SF_MAX_Xy$SF_MIN_Yto$SF_MAX_Y -s $START -e $END -j $STEP -t 0 -a';
         $scope.workTemplate = $scope.workTemplateFullframe;
@@ -151,7 +151,7 @@ angular.module('awsSetup')
             var parsedSubframeX = parseInt($scope.subframeModel.subframesX, 10);
             var parsedSubframeY = parseInt($scope.subframeModel.subframesY, 10);
             if ($scope.isSubframeRender && (parsedSubframeX > 1 || parsedSubframeY > 1)) {
-                var blenderCmd = $scope.workTemplate.replace("$SCRIPT", $scope.subframeScript).replace("$START", i).replace("$END", i).replace("$STEP", 1).replace("$INLINESCRIPT", $scope.inlineScript).split('$SCENE').join($scope.scene);
+                var blenderCmd = $scope.workTemplate.replace("$BLENDERVERSION", $scope.blender_build.value).replace("$SCRIPT", $scope.subframeScript).replace("$START", i).replace("$END", i).replace("$STEP", 1).replace("$INLINESCRIPT", $scope.inlineScript).split('$SCENE').join($scope.scene);
                 addSubframeTasksToList(parsedSubframeX, parsedSubframeY, blenderCmd, list);
             } else {
             	var endFrame = i+multiframeSteps-1;
