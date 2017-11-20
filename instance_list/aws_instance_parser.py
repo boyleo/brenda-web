@@ -35,10 +35,19 @@ df["location"] = df["location"].map({
     "Asia Pacific (Tokyo)": "ap-northeast-1", "Canada (Central)": "ca-central-1", "EU (Frankfurt)": "eu-central-1",
     "EU (Ireland)": "eu-west-1", "EU (London)": "eu-west-2", "South America (Sao Paulo)": "sa-east-1"})
 
-_instanceData = df[(df["operatingSystem"] == "Linux") & (df["location"].notnull()) & (df["productFamily"] == "Compute Instance") & (df['vcpu'].astype(float) >= __min_number_of_cores__)][["location", "instanceType"]].drop_duplicates().to_json(orient="records")
+_instanceData = df[(df["operatingSystem"] == "Linux") 
+				& (df["location"].notnull()) 
+				& (df["productFamily"] == "Compute Instance") 
+				& (df['vcpu'].astype(float) >= __min_number_of_cores__)][["location", "instanceType"]].\
+			drop_duplicates().to_json(orient="records")
 
-_t = open(__output_file__, 'w')
-_t.write(_instanceData)
-_t.close()
+try:
+	_t = open(__output_file__, 'w')
+	_t.write(_instanceData)
+	print('data written to instances.json')
 
-print('data written to instances.json')
+except Exception as exc:
+	print('Failed to write file:', exc)
+
+finally:
+	_t.close()
