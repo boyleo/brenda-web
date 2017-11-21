@@ -1,0 +1,70 @@
+<!-- 
+	Brenda-Web -- Frontend for Blender
+	Copyright (C) 2016 Nakul Jeirath
+	
+	Brenda-Web is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<p class="lead">
+	Execute the given Python script after loading the file for each frame
+</p>
+<p>
+When the scene has been successfully loaded, the Python execution is being run. This happens before Blender switches 
+to the scene to be rendered, so whatever you send as a command can potentially run on a different scene than expected. 
+An example script line can be seen below:
+</p>
+<p>
+	<code>bpy.ops.render.set_sampling(scene='ALL', device='GPU', samples=25, percentage=100, branched=False, 
+	clamping=True, max_bounces=8, transparent_max_bounces=6,use_all_resources=False, cpu_tile_size=32)</code>
+</p>
+<p>
+The code above runs a custom operator (bpy.ops.render.set_sampling) which is developed by Kiska and installed on the AMIs 
+provided with <strong>brenda-web</strong>. There is a number of options that can be set, each one described on this help page. 
+Note that the <code>import bpy</code> statement is automatically inserted to the frame template.
+</p>
+
+<p>The available options are</p>
+
+<ol>
+	<li><strong>scene:</strong> 'ALL' or 'CURRENT'</li>
+	<li><strong>device:</strong> 'GPU' or 'CPU'</li>
+	<li><strong>use_all_resources:</strong> <code>True</code> or <code>False</code>, default <code>False</code>. This allows 
+											using both GPU and CPU for rendering. Only enable for really heavy scenes.</li>
+	<li><strong>samples:</strong> number of <strong>squared</strong> samples</li>
+	<li><strong>max_bounces:</strong> number of max total bounces</li>
+	<li><strong>min_bounces:</strong> number of min total bounces</li>
+	<li><strong>transparent_max_bounces:</strong> number of transparent max bounces</li>
+	<li><strong>transparent_min_bounces:</strong> number of transparent min bounces</li>
+	<li><strong>transmission_bounces:</strong> number of max transmission bounces</li>
+	<li><strong>percentage:</strong>  render size percentage, relative to image resolution setting in file</li>
+	<li><strong>cpu_tile_size:</strong> cpu tile size to use. For GPU this will be multiplied by 4 in case of path tracing, 
+		and by 8 in case of branched path tracing, and automatically counter corrected when <code>use_all_resources</code> is set 
+		to <code>True</code></li>
+	<li><strong>branched:</strong> <code>True</code> or <code>False</code>, default <code>False</code>. Triggers branched path tracing/li>
+	<li><strong>clamping:</strong> <code>True</code> or <code>False</code>, default <code>False</code>. Enables indirect and direct clamping. 
+										Values are set rather high to avoid losing too much light, while still removing some fireflies</li>
+	<li><strong>force_supported:</strong> <code>True</code> or <code>False</code>, default <code>False</code>. Force the <strong>SUPPORTED</strong> 
+										feature set, even if the user had set it to <strong>EXPERIMENTAL</strong></li>
+	
+</ol>
+
+<p>
+You can also, if you need to, add multiple scripts to your Work Template. Just copy and paste the 
+<code>--python-expr "code here"</code> section and place it whereever needed. Note that Blender executes the given
+batch commands in the order that they are given. More info can be found on 
+https://docs.blender.org/manual/en/dev/render/workflows/command_line.html?highlight=command%20line
+</p>
+
+<p>
+For more Information on the Kiska Custom Tool used here, visit this page: https://bitbucket.org/aliasguru/configurator-efficiency-tools/wiki/Render-Layer-Operators
+</p>
