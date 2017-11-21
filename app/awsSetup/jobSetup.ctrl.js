@@ -69,6 +69,15 @@ angular.module('awsSetup')
 
         $scope.outputFileFormats = [
         	{value: 'MULTILAYER', label:'OpenEXR Multilayer'},
+        	{value: 'EXR', label:'OpenEXR'},
+        	{value: 'TGA', label:'Targa'},
+        	{value: 'TIFF', label:'Tiff'},
+        	{value: 'HDR', label:'HDR'},
+        	{value: 'CINEON', label:'Cineon'},
+        	{value: 'DPX', label:'DPX'},
+        	{value: 'PNG', label:'PNG'},
+        	{value: 'JPEG', label:'Jpeg'},
+        	{value: 'BMP', label:'Bitmap'},
         ];
         
         $scope.outputFileFormat = $scope.outputFileFormats[0].value; //Default to CurrentDev        
