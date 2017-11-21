@@ -61,7 +61,7 @@ angular.module('awsSetup')
     	'use_all_resources=False, cpu_tile_size=32)';
         
         $scope.blenderBuild = [
-        	{value: 'currentDev', label:'Current Dev', select:"select"},
+        	{value: 'currentDev', label:'Current Dev'},
         	{value: 'blender', label:'Blender Default'},
         	{value: 'currentStable', label:'Current Stable'}
         ];
