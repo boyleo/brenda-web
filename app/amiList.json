@@ -13,15 +13,10 @@
 			"blenderVersion": "2.78",
 			"region": "us-west-2"
 		},{
-			"ami": "ami-c30482b9",
+			"ami": "ami-c59119bf",
 			"blenderVersion": "2.79 Kiska File Output Nodes",
 			"region": "us-east-1"
 		},
-		{
-			"ami": "ami-ad54d1d7",
-			"blenderVersion": "2.79 Kiska CurrentDev only",
-			"region": "us-east-1"
-		},		
 		{
 			"ami": "ami-0c2e8776",
 			"blenderVersion": "2.79 Kiska P3 enabled",
