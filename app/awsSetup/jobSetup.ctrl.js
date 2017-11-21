@@ -60,11 +60,12 @@ angular.module('awsSetup')
     	'percentage=100, branched=False, clamping=True, max_bounces=8, transparent_max_bounces=6,' + 
     	'use_all_resources=False, cpu_tile_size=32)';
         
-        $scope.blenderBuild = [
-        	{value: 'currentDev', label:'Current Dev'},
-        	{value: 'blender', label:'Blender Default'},
-        	{value: 'currentStable', label:'Current Stable'}
+        $scope.blenderBuilds = [
+        	{value: 'currentDev', label:'Current Dev (use this for GPU rendering!)'},
+        	{value: 'blender', label:'Blender Default (currently 2.79)'}
         ];
+        
+        $scope.blenderBuild = $scope.blenderBuilds[0].value; //Default to CurrentDev
         	
         $scope.shuffle = Boolean(localStorageService.get('shuffleQ'));
     };
