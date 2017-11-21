@@ -28,7 +28,7 @@ angular.module('awsSetup')
         $scope.subframeModel = {};
         $scope.subframeModel.subframesX = 2;
         $scope.subframeModel.subframesY = 2;
-
+        
         $scope.isMultiframeRender = false;
         $scope.multiframeModel = {};
         $scope.multiframeModel.multiframes = 2;
@@ -54,10 +54,17 @@ angular.module('awsSetup')
         $scope.workTemplate = $scope.workTemplateFullframe;
         $scope.startFrame = 1;
         $scope.endFrame = 9;
+        
         $scope.scene = 'Scene';
         $scope.inlineScript = 'bpy.ops.render.set_sampling(scene=\'ALL\', device=\'GPU\', samples=25, ' + 
     	'percentage=100, branched=False, clamping=True, max_bounces=8, transparent_max_bounces=6,' + 
     	'use_all_resources=False, cpu_tile_size=32)';
+        
+        $scope.blenderBuild = [
+        	{value: 'currentDev', label:'Current Dev', select:"select"},
+        	{value: 'blender', label:'Blender Default'},
+        	{value: 'currentStable', label:'Current Stable'}
+        ];
         	
         $scope.shuffle = Boolean(localStorageService.get('shuffleQ'));
     };
@@ -151,14 +158,14 @@ angular.module('awsSetup')
             var parsedSubframeX = parseInt($scope.subframeModel.subframesX, 10);
             var parsedSubframeY = parseInt($scope.subframeModel.subframesY, 10);
             if ($scope.isSubframeRender && (parsedSubframeX > 1 || parsedSubframeY > 1)) {
-                var blenderCmd = $scope.workTemplate.replace("$BLENDERVERSION", $scope.blender_build.value).replace("$SCRIPT", $scope.subframeScript).replace("$START", i).replace("$END", i).replace("$STEP", 1).replace("$INLINESCRIPT", $scope.inlineScript).split('$SCENE').join($scope.scene);
+                var blenderCmd = $scope.workTemplate.replace("$BLENDERVERSION", $scope.blenderBuild).replace("$SCRIPT", $scope.subframeScript).replace("$START", i).replace("$END", i).replace("$STEP", 1).replace("$INLINESCRIPT", $scope.inlineScript).split('$SCENE').join($scope.scene);
                 addSubframeTasksToList(parsedSubframeX, parsedSubframeY, blenderCmd, list);
             } else {
             	var endFrame = i+multiframeSteps-1;
             	if (endFrame > $scope.endFrame){
             		endFrame = $scope.endFrame;
 				}
-                var cmd = $scope.workTemplate.replace("$START", i).replace("$END", endFrame).replace("$STEP", 1).replace("$INLINESCRIPT", $scope.inlineScript).split('$SCENE').join($scope.scene);
+                var cmd = $scope.workTemplate.replace("$BLENDERVERSION", $scope.blenderBuild).replace("$START", i).replace("$END", endFrame).replace("$STEP", 1).replace("$INLINESCRIPT", $scope.inlineScript).split('$SCENE').join($scope.scene);
                 list.push(cmd);
             }
         }

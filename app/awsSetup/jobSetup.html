@@ -44,10 +44,8 @@
 		<div class="form-group">
 			<div class="input-group">
 				<label>Blender build to use</label>
-				<select for="blender_build" class="form-control">
-				  <option value="blender">Blender</option>
-				  <option value="currentStable">Current Stable</option>
-				  <option value="currentDev">Current Dev</option>
+				<select class="form-control" ng-model="blenderBuild">
+					<option ng-repeat="build in blenderBuild" value="{{build.label}}">{{build.label}}</option>
 				</select>
 			</div>
 			<label for="workTemplate">Work Template</label>
