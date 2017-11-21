@@ -45,18 +45,18 @@ angular.module('awsSetup')
         ].join('');
 
         $scope.workTemplateFullframe = '$BLENDERVERSION -b *.blend -y ' + 
-        	'--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F MULTILAYER -o $OUTDIR/$SCENE_#### -s $START -e $END -j $STEP -t 0 -a';
+        	'--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F $OFILEFORMAT -o $OUTDIR/$SCENE_#### -s $START -e $END -j $STEP -t 0 -a';
         
         //$scope.workTemplateFullframe = 'blender -b *.blend -F MULTILAYER -y -S YOURSCENEHERE -o $OUTDIR/render_### -s $START -e $END -j $STEP -t 0 -a';
         $scope.workTemplateSubframe = '$BLENDERVERSION -b *.blend -y ' + 
-        '--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F MULTILAYER ' +
+        '--python-expr \"import bpy;$INLINESCRIPT\" -S $SCENE -F $OFILEFORMAT ' +
     	'-o $OUTDIR/$SCENE_####_x$SF_MIN_Xto$SF_MAX_Xy$SF_MIN_Yto$SF_MAX_Y -s $START -e $END -j $STEP -t 0 -a';
         $scope.workTemplate = $scope.workTemplateFullframe;
         $scope.startFrame = 1;
         $scope.endFrame = 9;
         
         $scope.scene = 'Scene';
-        $scope.inlineScript = 'bpy.ops.render.set_sampling(scene=\'ALL\', device=\'GPU\', samples=25, ' + 
+        $scope.inlineScript = 'bpy.ops.render.set_sampling(scene=\'ALL\', device=\'GPU\', samples=$SAMPLES, ' + 
     	'percentage=100, branched=False, clamping=True, max_bounces=8, transparent_max_bounces=6,' + 
     	'use_all_resources=False, cpu_tile_size=32)';
         
@@ -66,6 +66,14 @@ angular.module('awsSetup')
         ];
         
         $scope.blenderBuild = $scope.blenderBuilds[0].value; //Default to CurrentDev
+
+        $scope.outputFileFormats = [
+        	{value: 'MULTILAYER', label:'OpenEXR Multilayer'},
+        ];
+        
+        $scope.outputFileFormat = $scope.outputFileFormats[0].value; //Default to CurrentDev        
+        
+        $scope.sampleCount = 25;
         	
         $scope.shuffle = Boolean(localStorageService.get('shuffleQ'));
     };
@@ -158,15 +166,16 @@ angular.module('awsSetup')
 		for (var i = parseInt($scope.startFrame, 10); i <= parseInt($scope.endFrame, 10); i=i+multiframeSteps) {
             var parsedSubframeX = parseInt($scope.subframeModel.subframesX, 10);
             var parsedSubframeY = parseInt($scope.subframeModel.subframesY, 10);
+            var inlineScript = $scope.inlineScript.replace("$SAMPLES", $scope.sampleCount);
             if ($scope.isSubframeRender && (parsedSubframeX > 1 || parsedSubframeY > 1)) {
-                var blenderCmd = $scope.workTemplate.replace("$BLENDERVERSION", $scope.blenderBuild).replace("$SCRIPT", $scope.subframeScript).replace("$START", i).replace("$END", i).replace("$STEP", 1).replace("$INLINESCRIPT", $scope.inlineScript).split('$SCENE').join($scope.scene);
+                var blenderCmd = $scope.workTemplate.replace("$BLENDERVERSION", $scope.blenderBuild).replace("$SCRIPT", $scope.subframeScript).replace("$OFILEFORMAT", $scope.outputFileFormat).replace("$START", i).replace("$END", i).replace("$STEP", 1).replace("$INLINESCRIPT", inlineScript).split('$SCENE').join($scope.scene);
                 addSubframeTasksToList(parsedSubframeX, parsedSubframeY, blenderCmd, list);
             } else {
             	var endFrame = i+multiframeSteps-1;
             	if (endFrame > $scope.endFrame){
             		endFrame = $scope.endFrame;
 				}
-                var cmd = $scope.workTemplate.replace("$BLENDERVERSION", $scope.blenderBuild).replace("$START", i).replace("$END", endFrame).replace("$STEP", 1).replace("$INLINESCRIPT", $scope.inlineScript).split('$SCENE').join($scope.scene);
+                var cmd = $scope.workTemplate.replace("$BLENDERVERSION", $scope.blenderBuild).replace("$OFILEFORMAT", $scope.outputFileFormat).replace("$START", i).replace("$END", endFrame).replace("$STEP", 1).replace("$INLINESCRIPT", inlineScript).split('$SCENE').join($scope.scene);
                 list.push(cmd);
             }
         }

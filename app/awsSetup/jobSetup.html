@@ -65,18 +65,28 @@
 		</div>
 		
 		<div class="form-inline">
-			<div class="form-group">
+			<div class="input-group">
 				<label for="startFrame">Start Frame</label>
-				<input type="number" name="startFrame" class="form-control" id="startFrame" ng-model="startFrame" required min="0" max="{{endFrame}}" size="15"/>
+				<input type="number" name="startFrame" class="form-control" id="startFrame" ng-model="startFrame" required min="0" max="{{endFrame}}" />
 			</div>
 			
-			<div class="form-group">
+			<div class="input-group">
 				<label for="endFrame">End Frame</label>
-				<input type="number" name="endFrame" class="form-control" id="endFrame" ng-model="endFrame" required min="{{startFrame}}"/>
+				<input type="number" name="endFrame" class="form-control" id="endFrame" ng-model="endFrame" required min="{{startFrame}}" />
 			</div>
-			<div class="form-group">
+			<div class="input-group">
 				<label for="sceneToRender">scene to render</label>
 				<input type="text" class="form-control" id="sceneToRender" ng-model="scene" />
+			</div>
+			<div class="input-group">
+				<label for="sampleCount">sample count</label>
+				<input type="text" class="form-control" id="sampleCount" ng-model="sampleCount" />
+			</div>
+			<div class="input-group">
+				<label>Output File Format</label>
+				<select class="form-control" ng-model="outputFileFormat">
+					<option ng-repeat="format in outputFileFormats" value="{{format.value}}">{{format.label}}</option>
+				</select>
 			</div>
 		</div>
 
