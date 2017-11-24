@@ -13,12 +13,12 @@
 			"blenderVersion": "2.78",
 			"region": "us-west-2"
 		},{
-			"ami": "ami-c59119bf",
+			"ami": "ami-a22fbbd8",
 			"blenderVersion": "2.79 Kiska File Output Nodes",
 			"region": "us-east-1"
 		},
 		{
-			"ami": "ami-9faf27e5",
+			"ami": "ami-afd245d5",
 			"blenderVersion": "2.79 Kiska P3 GPU instances",
 			"region": "us-east-1"
 		}
